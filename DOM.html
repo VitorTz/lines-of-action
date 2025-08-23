@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvore DOM - Lines of Action</title>
+    <link rel="icon" href="https://placehold.co/32x32/1e293b/ffffff?text=LOA" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #f8f9fa;
+            color: #1e293b;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #dom-tree {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .loading {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .error {
+            color: #dc2626;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Árvore DOM - Lines of Action</h1>
+        <nav>
+            <a href="index.html">← Voltar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>DOM</h2>
+            <div id="dom-tree" class="loading">Carregando árvore DOM...</div>
+        </section>
+    </main>
+
+    <script>
+        
+        function buildDomTree(node, depth = 0) {
+            let tree = "";
+            const indent = " ".repeat(depth * 4);
+
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                tree += `${indent}└── <${node.tagName.toLowerCase()}>`;
+            } else if (node.nodeType === Node.TEXT_NODE) {
+                const text = node.nodeValue.trim();
+                if (text) {
+                    tree += `${indent}└── "${text}"`;
+                } else {
+                    return "";
+                }
+            } else if (node.nodeType === Node.COMMENT_NODE) {
+                tree += `${indent}└── <!-- ${node.nodeValue.trim()} -->`;
+            } else {
+                return "";
+            }
+
+            tree += "\n";
+
+            node.childNodes.forEach(child => {
+                tree += buildDomTree(child, depth + 1);
+            });
+
+            return tree;
+        }
+        
+        async function loadDomTree() {
+            const domTreeEl = document.getElementById("dom-tree");
+
+            try {
+                const response = await fetch("index.html");
+                if (!response.ok) throw new Error("Erro ao carregar index.html");
+
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+
+                const tree = buildDomTree(doc.documentElement);
+                domTreeEl.textContent = tree;
+                domTreeEl.classList.remove("loading");
+            } catch (err) {
+                domTreeEl.textContent = `Erro: ${err.message}`;
+                domTreeEl.classList.add("error");
+            }
+        }
+
+        loadDomTree();
+    </script>
+</body>
+</html>
