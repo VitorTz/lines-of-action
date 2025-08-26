@@ -17,6 +17,7 @@
             <ul>
                 <li><a href="#sobre">Sobre o Jogo</a></li>    
                 <li><a href="#regras">Regras</a></li>
+                <li><a href="#descricao">Descrição do Projeto</a></li>
                 <li><a href="DOM.html">Árvore DOM</a></li>
             </ul>
         </nav>
@@ -68,6 +69,31 @@
                     <li>Se um jogador não conseguir fazer nenhuma jogada, este jogador perde.</li>
                 </ol>
             </section>
+
+            <section id="descricao">
+                <div class="section-title-container">
+                    <h2>Descrição do Projeto</h2>                    
+                </div>
+
+                <p>Este projeto tem como objetivo o desenvolvimento de uma aplicação web interativa para o jogo Lines of Action (LOA) e deve suportar tanto desktop como dispositivos móveis. </p>
+
+                <br>
+                
+                <p>A aplicação será hospedada no servidor virtual da UFSC (VPS-UFSC) e seguirá a arquitetura MVC.</p>
+                
+                <br>
+
+                <p>O sistema permitirá que os usuários joguem partidas contra outros jogadores ou contra um bot, com suporte a rankings, scores e persistência de dados em um banco MongoDB. A interface contará com um tabuleiro interativo, modos de visualização claro e escuro, avatares personalizáveis e funcionalidades como chat em tempo real, vídeochat com áudio entre jogadores, e fila dinâmica para gerenciamento de partidas.</p>
+                
+                <br>
+
+                <p>As partidas poderão ser gravadas em vídeo e áudio utilizando FFMPEG, armazenadas no banco de dados e compartilhadas por URL, com player embutido no sistema. Além disso, será implementado gerenciamento de filas, controle de avatares e administração do espaço de armazenamento de vídeos.</p>                    
+
+                <br>
+
+                <p>A aplicação será desenvolvida com HTML5, CSS3, JavaScript e MongoDB. Também serão aplicadas práticas de segurança, como proteção contra XSS, CSRF, injeção de código e exposição de dados sensíveis.                    </p>                    
+                
+            </section>
             
         </main>
         
@@ -89,19 +115,34 @@
                     <li>MongoDB</li>
                 </ul>
             </div>
+            
             <div class="aside-card">
                 <h4>Links</h4>
                 <ul>
-                    <li><a href="https://presencial.moodle.ufsc.br/course/view.php?id=32192" target="_blank">Moodle</a></li>                    
-                </ul>            
+                    <li><a href="https://presencial.moodle.ufsc.br/course/view.php?id=32192" target="_blank">Curso</a></li>
+                </ul>
+                <ul>
+                    <li><a href="https://github.com/VitorTz/lines-of-action" target="_blank">GitHub</a></li>                    
+                </ul>                
+            </div>
+            <div class="aside-card">
+                <h4>Objetivos da AA2</h4>
+                <p>
+                    Desenvolver uma página web estática utilizando HTML e CSS, com codificação UTF-8, visando a familiarização com a estrutura de páginas, elementos semânticos e conceitos básicos de estilização.
+                </p>
             </div>
         </aside>
 
     </div>
     
-    <footer>
-        <p>Projeto desenvolvido para a disciplina de Programação para Web 2025/2</p>
-        <address><li><a href="https://github.com/VitorTz/lines-of-action" target="_blank">GitHub</a></li></address>
+    <footer> 
+        <p>Lines of Action Web — Jogo online com chat, rankings e gravação de partidas.</p> <p>Projeto desenvolvido para a disciplina de Programação para Web (UFSC) 2025/2</p> 
+        <address>
+            <a href="mailto:vitor.fsz@proton.me">vitor.fsz@proton.me</a>
+        </address>
+        <address>
+            <a href="mailto:bernardofranceschina@gmail.com">bernardofranceschina@gmail.com</a>
+        </address>
     </footer>
 
 </body>
